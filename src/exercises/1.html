@@ -3,23 +3,54 @@
   {{> header}}
   <body>
     {{> header-bar }}
-
     <!-- 🦁 crée une div avec l'id "root" et la classe "container" -->
+    <div id="root" class="container"></div>
     <!-- ℹ️ presque toutes les app React ont une "root".
           C'est le premier nœud de notre arbre. -->
   </body>
 
   <script>
-    // 🦁 crée un div avec l'id "root" et la classe "container"
+    const button = document.createElement('button');
+    button.innerText = 'Hello 👋';
+    button.classList.add('btn', 'btn-primary');
 
-    // 🦁 crée un button
+    button.addEventListener('click', () => {
+      alert('Tu as cliqué sur Hello, well done 👍');
+    });
 
-    // 🦁 ajoute le text "Hello 👋" dedans
+    function counter(initialValue) {
+      initialValue = typeof initialValue !== 'number' ? 0 : initialValue;
 
-    // 🦁 ajoute le button dans l'élément "root"
+      const counterBtn = document.createElement('button');
+      counterBtn.innerText = initialValue;
+      counterBtn.classList.add('btn', 'btn-outline');
 
-    // 🦁 récupère l'élément "root"
+      let count = initialValue;
 
-    // 🦁 ajoute la div dans l'élément "root"
+      counterBtn.addEventListener('click', () => {
+        count++;
+        counterBtn.innerText = count;
+      });
+
+      return counterBtn;
+    }
+
+    const fruits = ['banana', 'apple', 'strawberry'];
+    const fruitsUl = document.createElement('ul');
+    fruitsUl.classList.add('list-disc', 'list-inside');
+
+    for (const fruit of fruits) {
+      const fruitLi = document.createElement('li');
+      fruitLi.innerText = fruit;
+      fruitsUl.appendChild(fruitLi);
+    }
+
+    const root = document.querySelector('#root');
+    root.appendChild(button);
+    root.appendChild(counter(1));
+    root.appendChild(counter(1));
+    root.appendChild(counter(1));
+    root.appendChild(counter(1));
+    root.appendChild(fruitsUl);
   </script>
 </html>
